@@ -57,28 +57,28 @@
  */
 
 static int fb_lfs_freemem(fb_fdesc_t *fd, off64_t size);
-static int fb_lfs_open(fb_fdesc_t *, char *, int, int);
-static int fb_lfs_pread(fb_fdesc_t *, caddr_t, fbint_t, off64_t);
-static int fb_lfs_read(fb_fdesc_t *, caddr_t, fbint_t);
-static int fb_lfs_pwrite(fb_fdesc_t *, caddr_t, fbint_t, off64_t);
-static int fb_lfs_write(fb_fdesc_t *, caddr_t, fbint_t);
-static int fb_lfs_lseek(fb_fdesc_t *, off64_t, int);
-static int fb_lfs_truncate(fb_fdesc_t *, off64_t);
-static int fb_lfs_rename(const char *, const char *);
-static int fb_lfs_close(fb_fdesc_t *);
-static int fb_lfs_link(const char *, const char *);
-static int fb_lfs_symlink(const char *, const char *);
-static int fb_lfs_unlink(char *);
-static ssize_t fb_lfs_readlink(const char *, char *, size_t);
-static int fb_lfs_mkdir(char *, int);
-static int fb_lfs_rmdir(char *);
-static DIR *fb_lfs_opendir(char *);
-static struct dirent *fb_lfs_readdir(DIR *);
-static int fb_lfs_closedir(DIR *);
-static int fb_lfs_fsync(fb_fdesc_t *);
-static int fb_lfs_stat(char *, struct stat64 *);
-static int fb_lfs_fstat(fb_fdesc_t *, struct stat64 *);
-static int fb_lfs_access(const char *, int);
+static int fb_lfs_open(fb_fdesc_t *, char *, int, int); ///system call func
+static int fb_lfs_pread(fb_fdesc_t *, caddr_t, fbint_t, off64_t); ///system call func
+static int fb_lfs_read(fb_fdesc_t *, caddr_t, fbint_t); ///system call func
+static int fb_lfs_pwrite(fb_fdesc_t *, caddr_t, fbint_t, off64_t); ///system call func
+static int fb_lfs_write(fb_fdesc_t *, caddr_t, fbint_t); ///system call func
+static int fb_lfs_lseek(fb_fdesc_t *, off64_t, int); ///system call func
+static int fb_lfs_truncate(fb_fdesc_t *, off64_t); ///system call func
+static int fb_lfs_rename(const char *, const char *); ///system call func
+static int fb_lfs_close(fb_fdesc_t *); ///system call func
+static int fb_lfs_link(const char *, const char *); ///system call func
+static int fb_lfs_symlink(const char *, const char *); ///system call func
+static int fb_lfs_unlink(char *); ///system call func
+static ssize_t fb_lfs_readlink(const char *, char *, size_t); ///system call func
+static int fb_lfs_mkdir(char *, int); ///system call func
+static int fb_lfs_rmdir(char *); ///system call func
+static DIR *fb_lfs_opendir(char *); ///system call func
+static struct dirent *fb_lfs_readdir(DIR *);  ///system call func
+static int fb_lfs_closedir(DIR *); ///system call func
+static int fb_lfs_fsync(fb_fdesc_t *); ///system call func
+static int fb_lfs_stat(char *, struct stat64 *); ///system call func
+static int fb_lfs_fstat(fb_fdesc_t *, struct stat64 *); ///system call func
+static int fb_lfs_access(const char *, int); ///system call func
 static void fb_lfs_recur_rm(char *);
 
 static fsplug_func_t fb_lfs_funcs =
@@ -105,7 +105,7 @@ static fsplug_func_t fb_lfs_funcs =
 	fb_lfs_closedir,	/* closedir */
 	fb_lfs_fsync,		/* fsync */
 	fb_lfs_stat,		/* stat */
-	fb_lfs_fstat,		/* fstat */
+	fb_lfs_,		/* fstat */
 	fb_lfs_access,		/* access */
 	fb_lfs_recur_rm		/* recursive rm */
 };
@@ -183,6 +183,7 @@ fb_lfs_freemem(fb_fdesc_t *fd, off64_t size)
 static int
 fb_lfs_pread(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t fileoffset)
 {
+	printf("syscall: pread");
 	return (pread64(fd->fd_num, iobuf, iosize, fileoffset));
 }
 
@@ -192,6 +193,7 @@ fb_lfs_pread(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t fileoffset)
 static int
 fb_lfs_read(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 {
+	printf("syscall: read");
 	return (read(fd->fd_num, iobuf, iosize));
 }
 
@@ -213,8 +215,8 @@ fb_lfs_read(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
  * aiolist_t) element. Adds it to the flowop thread's
  * threadflow aio list. Returns a pointer to the element.
  */
-static aiolist_t *
-aio_allocate(flowop_t *flowop)
+static aiolist_t 
+*aio_allocate(flowop_t *flowop)
 {
 	aiolist_t *aiolist;
 
@@ -482,6 +484,7 @@ fb_lfsflow_aiowait(threadflow_t *threadflow, flowop_t *flowop)
 static int
 fb_lfs_open(fb_fdesc_t *fd, char *path, int flags, int perms)
 {
+		printf("syscall: open");
 	if ((fd->fd_num = open64(path, flags, perms)) < 0)
 		return (FILEBENCH_ERROR);
 	else
@@ -494,6 +497,7 @@ fb_lfs_open(fb_fdesc_t *fd, char *path, int flags, int perms)
 static int
 fb_lfs_unlink(char *path)
 {
+		printf("syscall: unlink");
 	return (unlink(path));
 }
 
@@ -503,6 +507,7 @@ fb_lfs_unlink(char *path)
 static ssize_t
 fb_lfs_readlink(const char *path, char *buf, size_t buf_size)
 {
+		printf("syscall: readlink");
 	return (readlink(path, buf, buf_size));
 }
 
@@ -512,6 +517,7 @@ fb_lfs_readlink(const char *path, char *buf, size_t buf_size)
 static int
 fb_lfs_fsync(fb_fdesc_t *fd)
 {
+		printf("syscall: fsync");
 	return (fsync(fd->fd_num));
 }
 
@@ -521,6 +527,7 @@ fb_lfs_fsync(fb_fdesc_t *fd)
 static int
 fb_lfs_lseek(fb_fdesc_t *fd, off64_t offset, int whence)
 {
+		printf("syscall: lseek");
 	return (lseek64(fd->fd_num, offset, whence));
 }
 
@@ -530,6 +537,7 @@ fb_lfs_lseek(fb_fdesc_t *fd, off64_t offset, int whence)
 static int
 fb_lfs_rename(const char *old, const char *new)
 {
+		printf("syscall: rename");
 	return (rename(old, new));
 }
 
@@ -540,6 +548,7 @@ fb_lfs_rename(const char *old, const char *new)
 static int
 fb_lfs_close(fb_fdesc_t *fd)
 {
+		printf("syscall: close");
 	return (close(fd->fd_num));
 }
 
@@ -549,6 +558,7 @@ fb_lfs_close(fb_fdesc_t *fd)
 static int
 fb_lfs_mkdir(char *path, int perm)
 {
+		printf("syscall: mkdir");
 	return (mkdir(path, perm));
 }
 
@@ -558,6 +568,7 @@ fb_lfs_mkdir(char *path, int perm)
 static int
 fb_lfs_rmdir(char *path)
 {
+		printf("syscall: rmdir");
 	return (rmdir(path));
 }
 
@@ -584,6 +595,7 @@ fb_lfs_recur_rm(char *path)
 static DIR *
 fb_lfs_opendir(char *path)
 {
+		printf("syscall: opendir");
 	return (opendir(path));
 }
 
@@ -594,6 +606,7 @@ fb_lfs_opendir(char *path)
 static struct dirent *
 fb_lfs_readdir(DIR *dirp)
 {
+		printf("syscall: readdir");
 	return (readdir(dirp));
 }
 
@@ -603,6 +616,7 @@ fb_lfs_readdir(DIR *dirp)
 static int
 fb_lfs_closedir(DIR *dirp)
 {
+		printf("syscall: closedir");
 	return (closedir(dirp));
 }
 
@@ -612,6 +626,7 @@ fb_lfs_closedir(DIR *dirp)
 static int
 fb_lfs_fstat(fb_fdesc_t *fd, struct stat64 *statbufp)
 {
+		printf("syscall: fstat");
 	return (fstat64(fd->fd_num, statbufp));
 }
 
@@ -621,6 +636,7 @@ fb_lfs_fstat(fb_fdesc_t *fd, struct stat64 *statbufp)
 static int
 fb_lfs_stat(char *path, struct stat64 *statbufp)
 {
+		printf("syscall: stat");
 	return (stat64(path, statbufp));
 }
 
@@ -630,6 +646,7 @@ fb_lfs_stat(char *path, struct stat64 *statbufp)
 static int
 fb_lfs_pwrite(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t offset)
 {
+		printf("syscall: pwrite");
 	return (pwrite64(fd->fd_num, iobuf, iosize, offset));
 }
 
@@ -639,6 +656,7 @@ fb_lfs_pwrite(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t offset)
 static int
 fb_lfs_write(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 {
+		printf("syscall: write");
 	return (write(fd->fd_num, iobuf, iosize));
 }
 
@@ -647,7 +665,7 @@ fb_lfs_write(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
  */
 static int
 fb_lfs_truncate(fb_fdesc_t *fd, off64_t fse_size)
-{
+{	printf("syscall: truncate");
 #ifdef HAVE_FTRUNCATE64
 	return (ftruncate64(fd->fd_num, fse_size));
 #else
@@ -662,7 +680,7 @@ fb_lfs_truncate(fb_fdesc_t *fd, off64_t fse_size)
  */
 static int
 fb_lfs_link(const char *existing, const char *new)
-{
+{		printf("syscall: link");
 	return (link(existing, new));
 }
 
@@ -672,6 +690,7 @@ fb_lfs_link(const char *existing, const char *new)
 static int
 fb_lfs_symlink(const char *existing, const char *new)
 {
+		printf("syscall: symlink");
 	return (symlink(existing, new));
 }
 
@@ -681,5 +700,6 @@ fb_lfs_symlink(const char *existing, const char *new)
 static int
 fb_lfs_access(const char *path, int amode)
 {
+		printf("syscall: access");
 	return (access(path, amode));
 }
