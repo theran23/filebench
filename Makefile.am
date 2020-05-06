@@ -9,8 +9,9 @@ SUBDIRS = workloads cvars
 # we depend on this lex & yacc generated file
 BUILT_SOURCES = parser_gram.h
 
-bin_PROGRAMS = filebench  //생성되는 실행파일 이름
-filebench_SOURCES = eventgen.c fb_avl.c fb_localfs.c \       //실행파일을 컴파일하기 위한 소스
+bin_PROGRAMS = filebench  
+//생성되는 실행파일 이름
+filebench_SOURCES = eventgen.c fb_avl.c fb_localfs.c \       
 		    fb_random.c fileset.c flowop.c flowop_library.c \
 		    gamma_dist.c ipc.c misc.c multi_client_sync.c \
 		    parser_gram.y parser_lex.l procflow.c stats.c \
@@ -22,6 +23,7 @@ filebench_SOURCES = eventgen.c fb_avl.c fb_localfs.c \       //실행파일을 �
 		    fbtime.c fbtime.h \
 		    fb_cvar.c fb_cvar.h aslr.c aslr.h \
 		    cvars/mtwist/mtwist.c cvars/mtwist/mtwist.h
+//실행파일을 컴파일하기 위한 소스
 
 EXTRA_DIST = LICENSE
 
