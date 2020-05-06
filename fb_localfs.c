@@ -681,7 +681,7 @@ fb_lfs_truncate(fb_fdesc_t *fd, off64_t fse_size)
  */
 static int
 fb_lfs_link(const char *existing, const char *new)
-	printf("%s/n",__func__);
+{	printf("%s/n",__func__);
 	return (link(existing, new));
 }
 
