@@ -105,7 +105,7 @@ static fsplug_func_t fb_lfs_funcs =
 	fb_lfs_closedir,	/* closedir */
 	fb_lfs_fsync,		/* fsync */
 	fb_lfs_stat,		/* stat */
-	fb_lfs_,		/* fstat */
+	fb_lfs_fstat,		/* fstat */
 	fb_lfs_access,		/* access */
 	fb_lfs_recur_rm		/* recursive rm */
 };
@@ -215,8 +215,8 @@ fb_lfs_read(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
  * aiolist_t) element. Adds it to the flowop thread's
  * threadflow aio list. Returns a pointer to the element.
  */
-static aiolist_t 
-*aio_allocate(flowop_t *flowop)
+static aiolist_t *
+aio_allocate(flowop_t *flowop)
 {
 	aiolist_t *aiolist;
 
