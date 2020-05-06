@@ -183,7 +183,7 @@ fb_lfs_freemem(fb_fdesc_t *fd, off64_t size)
 static int
 fb_lfs_pread(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t fileoffset)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (pread64(fd->fd_num, iobuf, iosize, fileoffset));
 }
 
@@ -193,7 +193,7 @@ fb_lfs_pread(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t fileoffset)
 static int
 fb_lfs_read(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (read(fd->fd_num, iobuf, iosize));
 }
 
@@ -484,7 +484,7 @@ fb_lfsflow_aiowait(threadflow_t *threadflow, flowop_t *flowop)
 static int
 fb_lfs_open(fb_fdesc_t *fd, char *path, int flags, int perms)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	if ((fd->fd_num = open64(path, flags, perms)) < 0)
 		return (FILEBENCH_ERROR);
 	else
@@ -497,7 +497,7 @@ fb_lfs_open(fb_fdesc_t *fd, char *path, int flags, int perms)
 static int
 fb_lfs_unlink(char *path)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (unlink(path));
 }
 
@@ -507,7 +507,7 @@ fb_lfs_unlink(char *path)
 static ssize_t
 fb_lfs_readlink(const char *path, char *buf, size_t buf_size)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (readlink(path, buf, buf_size));
 }
 
@@ -517,7 +517,7 @@ fb_lfs_readlink(const char *path, char *buf, size_t buf_size)
 static int
 fb_lfs_fsync(fb_fdesc_t *fd)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (fsync(fd->fd_num));
 }
 
@@ -527,7 +527,7 @@ fb_lfs_fsync(fb_fdesc_t *fd)
 static int
 fb_lfs_lseek(fb_fdesc_t *fd, off64_t offset, int whence)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (lseek64(fd->fd_num, offset, whence));
 }
 
@@ -537,7 +537,7 @@ fb_lfs_lseek(fb_fdesc_t *fd, off64_t offset, int whence)
 static int
 fb_lfs_rename(const char *old, const char *new)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (rename(old, new));
 }
 
@@ -548,7 +548,7 @@ fb_lfs_rename(const char *old, const char *new)
 static int
 fb_lfs_close(fb_fdesc_t *fd)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (close(fd->fd_num));
 }
 
@@ -558,7 +558,7 @@ fb_lfs_close(fb_fdesc_t *fd)
 static int
 fb_lfs_mkdir(char *path, int perm)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (mkdir(path, perm));
 }
 
@@ -568,7 +568,7 @@ fb_lfs_mkdir(char *path, int perm)
 static int
 fb_lfs_rmdir(char *path)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (rmdir(path));
 }
 
@@ -595,7 +595,7 @@ fb_lfs_recur_rm(char *path)
 static DIR *
 fb_lfs_opendir(char *path)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (opendir(path));
 }
 
@@ -606,7 +606,7 @@ fb_lfs_opendir(char *path)
 static struct dirent *
 fb_lfs_readdir(DIR *dirp)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (readdir(dirp));
 }
 
@@ -616,7 +616,7 @@ fb_lfs_readdir(DIR *dirp)
 static int
 fb_lfs_closedir(DIR *dirp)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (closedir(dirp));
 }
 
@@ -626,7 +626,7 @@ fb_lfs_closedir(DIR *dirp)
 static int
 fb_lfs_fstat(fb_fdesc_t *fd, struct stat64 *statbufp)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (fstat64(fd->fd_num, statbufp));
 }
 
@@ -636,7 +636,7 @@ fb_lfs_fstat(fb_fdesc_t *fd, struct stat64 *statbufp)
 static int
 fb_lfs_stat(char *path, struct stat64 *statbufp)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (stat64(path, statbufp));
 }
 
@@ -646,7 +646,7 @@ fb_lfs_stat(char *path, struct stat64 *statbufp)
 static int
 fb_lfs_pwrite(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t offset)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (pwrite64(fd->fd_num, iobuf, iosize, offset));
 }
 
@@ -656,7 +656,7 @@ fb_lfs_pwrite(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t offset)
 static int
 fb_lfs_write(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (write(fd->fd_num, iobuf, iosize));
 }
 
@@ -666,7 +666,7 @@ fb_lfs_write(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 static int
 fb_lfs_truncate(fb_fdesc_t *fd, off64_t fse_size)
 {	
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 #ifdef HAVE_FTRUNCATE64
 	return (ftruncate64(fd->fd_num, fse_size));
 #else
@@ -681,7 +681,8 @@ fb_lfs_truncate(fb_fdesc_t *fd, off64_t fse_size)
  */
 static int
 fb_lfs_link(const char *existing, const char *new)
-{	printf("%s/n",__func__);
+{
+	printf("%s\n",__func__);
 	return (link(existing, new));
 }
 
@@ -691,7 +692,7 @@ fb_lfs_link(const char *existing, const char *new)
 static int
 fb_lfs_symlink(const char *existing, const char *new)
 {
-	printf("%s/n",__func__);
+	printf("%s\n",__func__);
 	return (symlink(existing, new));
 }
 
