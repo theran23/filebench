@@ -193,7 +193,7 @@ fb_lfs_pread(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t fileoffset)
 static int
 fb_lfs_read(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 {
-	printf("%s\n",__func__);
+	printf("%s %p %d\n",__func__,fd,fd->num);
 	return (read(fd->fd_num, iobuf, iosize));
 }
 
