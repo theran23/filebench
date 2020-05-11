@@ -193,7 +193,7 @@ fb_lfs_pread(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t fileoffset)
 static int
 fb_lfs_read(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 {
-	printf("%s %p %d\n",__func__,fd,fd->fd_num);
+	printf("%s fd:%p fd_num:%d\n",__func__,fd,fd->fd_num);
 	return (read(fd->fd_num, iobuf, iosize));
 }
 
@@ -548,7 +548,7 @@ fb_lfs_rename(const char *old, const char *new)
 static int
 fb_lfs_close(fb_fdesc_t *fd)
 {
-	printf("%s\n",__func__);
+	printf("%s fd:%p fd_num:%d\n",__func__,fd,fd->fd_num);
 	return (close(fd->fd_num));
 }
 
