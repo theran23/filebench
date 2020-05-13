@@ -186,7 +186,7 @@ fb_lfs_pread(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t fileoffset)
 	printf("%s\n",__func__);
 	return (pread64(fd->fd_num, iobuf, iosize, fileoffset));
 }
-
+///////////////////////////////////////////////////read////////////////////////////////////////////////////////////
 /*
  * Does a posix read. Returns what the read() returns.
  */
@@ -474,7 +474,7 @@ fb_lfsflow_aiowait(threadflow_t *threadflow, flowop_t *flowop)
 }
 
 #endif /* HAVE_AIO */
-
+////////////////////////////////////////////////////open/////////////////////////////////////////////////////////////
 /*
  * Does an open64 of a file. Inserts the file descriptor number returned
  * by open() into the supplied filebench fd. Returns FILEBENCH_OK on
@@ -490,7 +490,7 @@ fb_lfs_open(fb_fdesc_t *fd, char *path, int flags, int perms)
 	else
 		return (FILEBENCH_OK);
 }
-
+////////////////////////////////////////////////////////////unlink///////////////////////////////////////////////////
 /*
  * Does an unlink (delete) of a file.
  */
@@ -510,7 +510,7 @@ fb_lfs_readlink(const char *path, char *buf, size_t buf_size)
 	printf("%s\n",__func__);
 	return (readlink(path, buf, buf_size));
 }
-
+///////////////////////////////////////////////////fsync///////////////////////////////////////////////
 /*
  * Does fsync of a file. Returns with fsync return info.
  */
@@ -520,7 +520,7 @@ fb_lfs_fsync(fb_fdesc_t *fd)
 	printf("%s\n",__func__);
 	return (fsync(fd->fd_num));
 }
-
+///////////////////////////////////////////////////lseek////////////////////////////////////////////////
 /*
  * Do a posix lseek of a file. Return what lseek() returns.
  */
@@ -541,7 +541,7 @@ fb_lfs_rename(const char *old, const char *new)
 	return (rename(old, new));
 }
 
-
+///////////////////////////////////////////////////////////////close///////////////////////////////////////////////
 /*
  * Do a posix close of a file. Return what close() returns.
  */
@@ -609,7 +609,6 @@ fb_lfs_readdir(DIR *dirp)
 	printf("%s\n",__func__);
 	return (readdir(dirp));
 }
-
 /*
  * Does a closedir() call.
  */
@@ -650,6 +649,7 @@ fb_lfs_pwrite(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t offset)
 	return (pwrite64(fd->fd_num, iobuf, iosize, offset));
 }
 
+/////////////////////////////////////////////write////////////////////////////////////////////////////
 /*
  * Do a write to a file.
  */
