@@ -548,7 +548,7 @@ fb_lfs_rename(const char *old, const char *new)
 static int
 fb_lfs_close(fb_fdesc_t *fd)
 {
-	printf("%s\n",__func__);
+	printf("%d %s\n",fd->fd_num,__func__);
 	return (close(fd->fd_num));
 }
 
@@ -658,7 +658,7 @@ fb_lfs_pwrite(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t offset)
 static int
 fb_lfs_write(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 {
-	printf("%s\n",__func__);
+	printf("%d %s\n",fd->fd_num,__func__);
 	return (write(fd->fd_num, iobuf, iosize));
 }
 
