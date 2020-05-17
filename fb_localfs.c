@@ -193,7 +193,7 @@ fb_lfs_pread(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t fileoffset)
 static int
 fb_lfs_read(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 {
-	printf("%d %s\n",fd->fd_num,__func__);
+	printf(" %d %s\n",fd->fd_num,__func__);
 	return (read(fd->fd_num, iobuf, iosize));
 }
 
@@ -484,7 +484,7 @@ fb_lfsflow_aiowait(threadflow_t *threadflow, flowop_t *flowop)
 static int
 fb_lfs_open(fb_fdesc_t *fd, char *path, int flags, int perms)
 {
-	printf("%d %s %s\n",fd->fd_num,path,__func__);
+	printf(" %d %s %s\n",fd->fd_num,path,__func__);
 	if ((fd->fd_num = open64(path, flags, perms)) < 0)
 		return (FILEBENCH_ERROR);
 	else
@@ -497,7 +497,7 @@ fb_lfs_open(fb_fdesc_t *fd, char *path, int flags, int perms)
 static int
 fb_lfs_unlink(char *path)
 {
-	printf("%s %s\n",path,__func__);
+	printf(" %s %s\n",path,__func__);
 	return (unlink(path));
 }
 
@@ -517,7 +517,7 @@ fb_lfs_readlink(const char *path, char *buf, size_t buf_size)
 static int
 fb_lfs_fsync(fb_fdesc_t *fd)
 {
-	printf("%d %s\n",fd->fd_num,__func__);
+	printf(" %d %s\n",fd->fd_num,__func__);
 	return (fsync(fd->fd_num));
 }
 ///////////////////////////////////////////////////lseek////////////////////////////////////////////////
@@ -527,7 +527,7 @@ fb_lfs_fsync(fb_fdesc_t *fd)
 static int
 fb_lfs_lseek(fb_fdesc_t *fd, off64_t offset, int whence)
 {
-	printf("%d %s\n",fd->fd_num,__func__);
+	printf(" %d %s\n",fd->fd_num,__func__);
 	return (lseek64(fd->fd_num, offset, whence));
 }
 
@@ -548,7 +548,7 @@ fb_lfs_rename(const char *old, const char *new)
 static int
 fb_lfs_close(fb_fdesc_t *fd)
 {
-	printf("%d %s\n",fd->fd_num,__func__);
+	printf(" %d %s\n",fd->fd_num,__func__);
 	return (close(fd->fd_num));
 }
 
@@ -560,7 +560,7 @@ fb_lfs_close(fb_fdesc_t *fd)
 static int
 fb_lfs_mkdir(char *path, int perm)
 {
-	printf("%s %s\n",path,__func__);
+	printf(" %s %s\n",path,__func__);
 	return (mkdir(path, perm));
 }
 
@@ -658,7 +658,7 @@ fb_lfs_pwrite(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t offset)
 static int
 fb_lfs_write(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 {
-	printf("%d %s\n",fd->fd_num,__func__);
+	printf(" %d %s\n",fd->fd_num,__func__);
 	return (write(fd->fd_num, iobuf, iosize));
 }
 
