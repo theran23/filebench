@@ -560,7 +560,7 @@ fb_lfs_close(fb_fdesc_t *fd)
 static int
 fb_lfs_mkdir(char *path, int perm)
 {
-	printf("%d %s\n",path,__func__);
+	printf("%s %s\n",path,__func__);
 	return (mkdir(path, perm));
 }
 
