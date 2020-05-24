@@ -222,7 +222,7 @@ fb_lfs_read(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 static aiolist_t *
 aio_allocate(flowop_t *flowop)
 {	
-	//printf(" %s",__func__);
+	printf("  %s",__func__); /////////////////////////AIO FUCTION//////////////////////
 	aiolist_t *aiolist;
 
 	if ((aiolist = malloc(sizeof (aiolist_t))) == NULL) {
@@ -252,7 +252,7 @@ aio_allocate(flowop_t *flowop)
 static int
 aio_deallocate(flowop_t *flowop, struct aiocb64 *aiocb)
 {	
-	//printf(" %s",__func__);
+	printf("  %s",__func__); /////////////////////////AIO FUCTION//////////////////////
 	aiolist_t *aiolist = flowop->fo_thread->tf_aiolist;
 	aiolist_t *previous = NULL;
 	aiolist_t *match = NULL;
@@ -297,7 +297,7 @@ aio_deallocate(flowop_t *flowop, struct aiocb64 *aiocb)
 static int
 fb_lfsflow_aiowrite(threadflow_t *threadflow, flowop_t *flowop)
 {	
-	//printf(" %s",__func__);
+	printf("  %s",__func__); /////////////////////////AIO FUCTION//////////////////////
 	caddr_t iobuf;
 	fbint_t wss;
 	fbint_t iosize;
@@ -368,7 +368,7 @@ fb_lfsflow_aiowrite(threadflow_t *threadflow, flowop_t *flowop)
 static int
 fb_lfsflow_aiowait(threadflow_t *threadflow, flowop_t *flowop)
 {	
-	//printf("%s",__func__);
+	printf("  %s",__func__);/////////////////////////AIO FUCTION//////////////////////
 	struct aiocb64 **worklist;
 	aiolist_t *aio = flowop->fo_thread->tf_aiolist;
 	int uncompleted = 0;
