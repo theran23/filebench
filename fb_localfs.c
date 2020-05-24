@@ -492,7 +492,7 @@ fb_lfsflow_aiowait(threadflow_t *threadflow, flowop_t *flowop)
 static int
 fb_lfs_open(fb_fdesc_t *fd, char *path, int flags, int perms)
 {	
-	fd->fd_num=open64(path,flags,perms);
+	fd->fd_num=open64(path,flags,perms);  ////// 이 함수의 반환값 fd_num을 프린트한다 !!!
 	printf(" %s %d %s\n",__func__,fd->fd_num,path);
 	if (fd->fd_num < 0)
 		return (FILEBENCH_ERROR);
