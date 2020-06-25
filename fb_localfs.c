@@ -196,9 +196,10 @@ fb_lfs_pread(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t fileoffset)
  */
 static int
 fb_lfs_read(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
-{
-	printf(" %s %d\n",__func__,fd->fd_num);
-	return (read(fd->fd_num, iobuf, iosize));
+{	
+	int value = read(fd->fd_num,iobuf,iosize);
+	printf(" %s %d v%d\n",__func__,fd->fd_num,value);
+	return (value);
 }
 
 #ifdef HAVE_AIO
@@ -511,7 +512,7 @@ fb_lfs_unlink(char *path)
 }
 
 /*
- * Does a readlink of a symbolic link.
+ * Does a link of a symbolic link.
  */
 
 static ssize_t
@@ -537,8 +538,9 @@ fb_lfs_fsync(fb_fdesc_t *fd)
 static int
 fb_lfs_lseek(fb_fdesc_t *fd, off64_t offset, int whence)
 {
-	printf(" %s %d\n",__func__,fd->fd_num);
-	return (lseek64(fd->fd_num, offset, whence));
+	int value = lseek64(fd->fd_num,offset,whence);
+	printf(" %s %d off%d w%d v%d\n",__func__,fd->fd_num,offset,whence,value);
+	return value;
 }
 
 /*
@@ -669,8 +671,9 @@ fb_lfs_pwrite(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize, off64_t offset)
 static int
 fb_lfs_write(fb_fdesc_t *fd, caddr_t iobuf, fbint_t iosize)
 {
-	printf(" %s %d\n",__func__,fd->fd_num);
-	return (write(fd->fd_num, iobuf, iosize));
+	int value = write(fd->fd_num,iobuf,iosize);
+	printf(" %s %d v%d\n",__func__,fd->fd_num,value);
+	return value;
 }
 
 /*
