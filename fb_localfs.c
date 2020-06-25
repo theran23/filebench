@@ -539,7 +539,7 @@ static int
 fb_lfs_lseek(fb_fdesc_t *fd, off64_t offset, int whence)
 {
 	int value = lseek64(fd->fd_num,offset,whence);
-	printf(" %s %d off%d w%d v%d\n",__func__,fd->fd_num,offset,whence,value);
+	printf(" %s %d off%d w%ld v%d\n",__func__,fd->fd_num,offset,whence,value);
 	return value;
 }
 
